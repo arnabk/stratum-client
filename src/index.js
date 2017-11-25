@@ -29,10 +29,29 @@ class Client {
 
     client.on('error', error => onError(client, updatedOptions, error));
 
-    client.on('close', () => updatedOptions.onClose && updatedOptions.onClose());
+    client.on('close', () => {
+      if (updatedOptions.onClose) updatedOptions.onClose();
+      /*
+        For some reason, corrupted data keeps streaming. This is a hack.
+        With this hack, I am ensuring that no more callbacks are called
+        after closing the connection (closing from our end)
+      */
+      extend(updatedOptions, {
+        onConnect: null,
+        onClose: null,
+        onError: null,
+        onAuthorize: null,
+        onNewDifficulty: null,
+        onSubscribe: null,
+        onNewMiningWork: null,
+      });
+    });
 
     return {
-      shutdown: () => client.destroy(),
+      shutdown: () => {
+        client.end();
+        client.destroy();
+      },
     };
   }
 

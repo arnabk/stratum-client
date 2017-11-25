@@ -20,6 +20,8 @@ A NodeJS based stratum client for communication with stratum pool
       onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
     });
 
+**worker** is required in order for `onNewMiningWork()` to receive new work continuously
+
 # Development
 
     $ git clone https://github.com/arnabk/stratum-client

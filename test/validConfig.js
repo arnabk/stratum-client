@@ -15,4 +15,11 @@ describe('Test Stratum client[validConfig]', () => {
       port: 8080,
     }), Error);
   });
+
+  // Test with missing required field worker
+  it('#worker', () => {
+    assert.throws(() => client({
+      port: 8080,
+    }), Error);
+  });
 });
