@@ -1,0 +1,35 @@
+{
+  "name": "stratum-client",
+  "version": "1.0.0",
+  "description": "A NodeJS based stratum client for communication with stratum pool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "int-test": "mocha --require babel-core/register --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnabk/stratum-client.git"
+  },
+  "keywords": [
+    "nodejs",
+    "stratum",
+    "mining"
+  ],
+  "author": "Arnab Karmakar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arnabk/stratum-client/issues"
+  },
+  "homepage": "https://github.com/arnabk/stratum-client#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "engines": {
+    "node": "~v9.0.0"
+  }
+}
