@@ -30,7 +30,7 @@ A NodeJS based stratum client for communication with stratum pool
 
   For running int tests. Make sure that you use a valid stratum server details
 
-    $ npm int-test
+    $ npm run int-test
 
 # Other information
 The project is open for suggestion or feedback. If you notice any issues while developing or using this library, feel free to report it [here](https://github.com/arnabk/stratum-client/issues)
