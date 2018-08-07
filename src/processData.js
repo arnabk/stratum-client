@@ -11,16 +11,23 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
   const key = jsonData.method || jsonData.id;
   const { error, result, params } = jsonData;
   const {
-    onAuthorize,
+    onAuthorizeSuccess,
+    onAuthorizeFail,
     onSubscribe,
     onNewDifficulty,
     worker,
+    password,
     onNewMiningWork
   } = updatedOptions;
 
 	switch (key) {
 	  case authorizeMethod:
-      if (onAuthorize) onAuthorize(error, result);
+	if (!jsonData.result) {
+	if (onAuthorizeFail) onAuthorizeFail(error, result);
+}
+      if (jsonData.result) {
+      if (onAuthorizeSuccess) onAuthorizeSuccess(error, result);
+	}
 	    break;
     case miningDifficulty:
       if (params.length > 0) {
@@ -38,7 +45,12 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
         });
       }
       if (worker) {
-        client.write(authorize.replace("<worker.name>", worker));
+	if (password) {
+          client.write(authorize.replace("<worker.name>", worker).replace("<worker.pass>", password));
+	}
+        if (!password) {
+          client.write(authorize.replace("<worker.name>", worker));
+        }
       }
       break;
     case miningNotify:
