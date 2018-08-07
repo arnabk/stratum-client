@@ -22,7 +22,8 @@ A NodeJS based stratum client for communication with stratum-capable pool.
       onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
     });
 
-`worker` is required in order for `onNewMiningWork()` to receive new work continuously
+`worker` is required in order for `onNewMiningWork()` to receive new work continuously.
+
 If `password` if not specified, the client will attempt to authenticate with 'x', which is good enough in most cases.
 
 # Development
