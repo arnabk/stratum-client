@@ -1,5 +1,5 @@
 # stratum-client
-A NodeJS based stratum client for communication with stratum pool
+A NodeJS based stratum client for communication with stratum-capable pool.
 
 # Installation
 
@@ -7,20 +7,23 @@ A NodeJS based stratum client for communication with stratum pool
 
     const client = require('stratum-client');
     client({
-      server: "stratum.slushpool.com",
+      server: "grlcgang.com",
       port: 3333,
-      worker: "arnabk.1",
+      worker: "KorkyMonster.testing",
+      password: "x",
       autoReconnectOnError: true,
       onConnect: () => console.log('Connected to server'),
       onClose: () => console.log('Connection closed'),
       onError: (error) => console.log('Error', error.message),
-      onAuthorize: () => console.log('Worker authorized'),
+      onAuthorizeSuccess: () => console.log('Worker authorized'),
+      onAuthorizeFail: () => console.log('WORKER FAILED TO AUTHORIZE OH NOOOOOO'),
       onNewDifficulty: (newDiff) => console.log('New difficulty', newDiff),
       onSubscribe: (subscribeData) => console.log('[Subscribe]', subscribeData),
       onNewMiningWork: (newWork) => console.log('[New Work]', newWork),
     });
 
-**worker** is required in order for `onNewMiningWork()` to receive new work continuously
+`worker` is required in order for `onNewMiningWork()` to receive new work continuously
+If `password` if not specified, the client will attempt to authenticate with 'x', which is good enough in most cases.
 
 # Development
 
