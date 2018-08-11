@@ -7,9 +7,9 @@ A NodeJS based stratum client for communication with stratum-capable pool.
 
     const client = require('stratum-client');
     client({
-      server: "stratum.slushpool.com",
+      server: "grlcgang.com",
       port: 3333,
-      worker: "arnabk.1",
+      worker: "KorkyMonster.testing",
       password: "x",
       autoReconnectOnError: true,
       onConnect: () => console.log('Connected to server'),

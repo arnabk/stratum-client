@@ -4,8 +4,8 @@
   "description": "A NodeJS based stratum client for communication with stratum pool",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "int-test": "mocha --require babel-core/register --recursive test"
+    "test": "mocha --require babel-core/register --recursive test",
+    "bump-version": "npm version patch"
   },
   "repository": {
     "type": "git",

@@ -29,13 +29,13 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
     switch (key) {
       case authorizeMethod:
         {
-          const fnSuccess = onAuthorizeSuccess || onAuthorize;
-          const fnFailure = onAuthorizeFail || onAuthorize;
+          const fnSuccess = onAuthorizeSuccess || onAuthorize || (() => {});
+          const fnFailure = onAuthorizeFail || onAuthorize || (() => {});
           if (result) fnSuccess(error, result);
           else fnFailure(error, result);
         }
       case miningDifficulty:
-        if (params.length > 0) {
+        if (params && params.length > 0) {
             workObject.miningDiff = params[0];
             if (onNewDifficulty) onNewDifficulty(params[0]);
         }
