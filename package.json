@@ -27,7 +27,7 @@
     "mocha": "^4.0.1"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.10"
   },
   "engines": {
     "node": "~v9.0.0"
