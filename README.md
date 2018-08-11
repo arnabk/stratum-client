@@ -27,6 +27,7 @@ A NodeJS based stratum client for communication with stratum-capable pool.
 If `password` if not specified, the client will attempt to authenticate with 'x', which is good enough in most cases.
 
 DEPRECATED: `onAuthorize(error, result)`. If `onAuthorizeSuccess` or `onAuthorizeFail` is not provided, it will fall back to `onAuthorize`.
+
 ## Development
 
     $ git clone https://github.com/arnabk/stratum-client
@@ -35,7 +36,7 @@ DEPRECATED: `onAuthorize(error, result)`. If `onAuthorizeSuccess` or `onAuthoriz
 
   For running int tests. Make sure that you use a valid stratum server details
 
-    $ npm run int-test
+    $ npm test
 
 ## Other information
 The project is open for suggestion or feedback. If you notice any issues while developing or using this library, feel free to report it [here](https://github.com/arnabk/stratum-client/issues)
