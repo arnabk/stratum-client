@@ -10,4 +10,7 @@ module.exports = {
 
   miningNotify: "mining.notify",
 
+  submitMethod: "mining.submit",
+  submitWork: '{"params": ["<worker.name>", "<jobID>", "<ExtraNonce2>", "<ntime>", "<nonce>"], "id": "mining.submit", "method": "mining.submit"}\n',
+
 };

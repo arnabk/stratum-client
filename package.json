@@ -17,6 +17,10 @@
     "mining"
   ],
   "author": "Arnab Karmakar",
+  "contributors": { 
+    "name" : "KorkyMonster"
+  , "url" : "http://github.com/KorkyMonster"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/arnabk/stratum-client/issues"

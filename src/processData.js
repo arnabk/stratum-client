@@ -7,6 +7,7 @@ const {
     subscribeMethod,
     miningDifficulty,
     miningNotify,
+    submitMethod,
 } = require('./messageContants');
 
 module.exports = (client, updatedOptions, jsonData, workObject) => {
@@ -14,7 +15,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
     const {
       error,
       result,
-      params
+      params,
     } = jsonData;
     const {
       onAuthorize,
@@ -24,8 +25,11 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
       onNewDifficulty,
       worker,
       password,
-      onNewMiningWork
+      onNewMiningWork,
+      onSubmitWorkSuccess,
+      onSubmitWorkFail,
     } = updatedOptions;
+console.log(jsonData);
     switch (key) {
       case authorizeMethod:
         {
@@ -70,6 +74,13 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
             if (onNewMiningWork) onNewMiningWork(cloneDeep(workObject));
         }
         break;
+      case submitMethod:
+	{
+          const fnSuccess = onSubmitWorkSuccess;
+          const fnFailure = onSubmitWorkFail;
+          if (result) fnSuccess(error, result);
+          else fnFailure(error, result);
+	}
       default:
         break;
     }
