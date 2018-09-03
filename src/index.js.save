@@ -13,11 +13,15 @@ const defaultConfig = {
 };
 
 class Client {
+/*
 submit() {
-var args = Array.prototype.slice.call(arguments);
-args.unshift(this.client); // Make real array from arguments
+var args = Array.prototype.slice.call(arguments); // Make real array from arguments
+args.unshift(this.client);
+console.log(this);
+console.log("AAAA");
 submitWork.apply(this, args);
 }
+*/
   start(options) {
     const client = new net.Socket();
     
@@ -58,8 +62,7 @@ submitWork.apply(this, args);
     });
     
     return {
-      client: client,
-      submit: this.submit,
+      submit: () ,
       shutdown: () => {
         client.end();
         client.destroy();
@@ -70,3 +73,4 @@ submitWork.apply(this, args);
 };
 
 module.exports = (options) => new Client().start(options);
+=>

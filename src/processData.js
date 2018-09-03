@@ -76,8 +76,8 @@ console.log(jsonData);
         break;
       case submitMethod:
 	{
-          const fnSuccess = onSubmitWorkSuccess;
-          const fnFailure = onSubmitWorkFail;
+          const fnSuccess = onSubmitWorkSuccess  || (() => {});
+          const fnFailure = onSubmitWorkFail  || (() => {});
           if (result) fnSuccess(error, result);
           else fnFailure(error, result);
 	}
