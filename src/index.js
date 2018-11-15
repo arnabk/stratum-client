@@ -9,63 +9,63 @@ const validateConfig = require('./validateConfig');
 const WorkObject = require('./workObject');
 
 const defaultConfig = {
-    "autoReconnectOnError": true
+  "autoReconnectOnError": true
 };
 
 class Client {
-    submit() {
-        var args = Array.prototype.slice.call(arguments);
-        args.unshift(this.client); // Make real array from arguments
-        submitWork.apply(this, args);
-    }
-    start(options) {
-        const client = new net.Socket();
+  submit() {
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(this.client); // Make real array from arguments
+    submitWork.apply(this, args);
+  }
+  start(options) {
+    const client = new net.Socket();
 
-        client.setEncoding('utf8');
+    client.setEncoding('utf8');
 
-        const updatedOptions = extend({}, defaultConfig, options);
+    const updatedOptions = extend({}, defaultConfig, options);
 
-        validateConfig(updatedOptions);
+    validateConfig(updatedOptions);
 
-        const workObject = new WorkObject();
+    const workObject = new WorkObject();
 
-        connect(client, updatedOptions);
+    connect(client, updatedOptions);
 
-        client.on('data', data => onData(client, updatedOptions, data, workObject));
+    client.on('data', data => onData(client, updatedOptions, data, workObject));
 
-        client.on('error', error => onError(client, updatedOptions, error));
+    client.on('error', error => onError(client, updatedOptions, error));
 
-        client.on('close', () => {
-            if (updatedOptions.onClose) updatedOptions.onClose();
-            /*
-              For some reason, corrupted data keeps streaming. This is a hack.
-              With this hack, I am ensuring that no more callbacks are called
-              after closing the connection (closing from our end)
-            */
-            extend(updatedOptions, {
-                onConnect: null,
-                onClose: null,
-                onError: null,
-                onAuthorize: null,
-                onAuthorizeSuccess: null,
-                onAuthorizeFail: null,
-                onNewDifficulty: null,
-                onSubscribe: null,
-                onNewMiningWork: null,
-                onSubmitWorkSuccess: null,
-                onSubmitWorkFail: null,
-            });
-        });
+    client.on('close', () => {
+      if (updatedOptions.onClose) updatedOptions.onClose();
+      /*
+        For some reason, corrupted data keeps streaming. This is a hack.
+        With this hack, I am ensuring that no more callbacks are called
+        after closing the connection (closing from our end)
+      */
+      extend(updatedOptions, {
+        onConnect: null,
+        onClose: null,
+        onError: null,
+        onAuthorize: null,
+        onAuthorizeSuccess: null,
+        onAuthorizeFail: null,
+        onNewDifficulty: null,
+        onSubscribe: null,
+        onNewMiningWork: null,
+        onSubmitWorkSuccess: null,
+        onSubmitWorkFail: null,
+      });
+    });
 
-        return {
-            client: client,
-            submit: this.submit,
-            shutdown: () => {
-                client.end();
-                client.destroy();
-            },
-        };
-    }
+    return {
+      client: client,
+      submit: this.submit,
+      shutdown: () => {
+        client.end();
+        client.destroy();
+      },
+    };
+  }
 
 };
 
