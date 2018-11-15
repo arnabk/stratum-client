@@ -13,10 +13,8 @@ const defaultConfig = {
 };
 
 class Client {
-  submit() {
-    var args = Array.prototype.slice.call(arguments);
-    args.unshift(this.client); // Make real array from arguments
-    submitWork.apply(this, args);
+  submit(options) {
+    submitWork.apply(this, [options, client]);
   }
   start(options) {
     const client = new net.Socket();

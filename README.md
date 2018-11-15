@@ -24,7 +24,7 @@ A NodeJS based stratum client for communication with stratum-capable pool.
       onSubmitWorkFail: (error, result) => console.log("Oh no! Our work was refused because: " + error),
     });
 
-Mining work can then be submitted through `Client.submit("<worker>", "<job_id>", "extranonce2", "ntime", "nonce")`; Worker must have been authorized correctly for work to register with a pool. 
+Mining work can then be submitted through `Client.submit({"worker_name" : WORKER_NAME_HERE_AS_STRING, "job_id" : JOB_ID, "extranonce2" : EXTRANONCE2, "ntime" : NTIME, "nonce": NONCE})`; Worker must have been authorized correctly for work to register with a pool.
 
 `worker` is required in order for `onNewMiningWork()` to receive new work continuously.
 
@@ -44,4 +44,5 @@ DEPRECATED: `onAuthorize(error, result)`. If `onAuthorizeSuccess` or `onAuthoriz
 
 ## Other information
 The project is open for suggestion or feedback. If you notice any issues while developing or using this library, feel free to report it [here](https://github.com/arnabk/stratum-client/issues)
+
 
