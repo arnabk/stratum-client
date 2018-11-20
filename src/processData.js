@@ -29,7 +29,6 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
     onSubmitWorkSuccess,
     onSubmitWorkFail,
   } = updatedOptions;
-  console.log(jsonData);
   switch (key) {
     case authorizeMethod:
       {

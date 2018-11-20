@@ -17,9 +17,9 @@
     "mining"
   ],
   "author": "Arnab Karmakar",
-  "contributors": { 
-    "name" : "KorkyMonster"
-  , "url" : "http://github.com/KorkyMonster"
+  "contributors": {
+    "name": "KorkyMonster",
+    "url": "http://github.com/KorkyMonster"
   },
   "license": "MIT",
   "bugs": {
@@ -30,7 +30,7 @@
     "mocha": "^4.0.1"
   },
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   },
   "engines": {
     "node": "~v9.0.0"

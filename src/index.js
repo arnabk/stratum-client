@@ -14,7 +14,10 @@ const defaultConfig = {
 
 class Client {
   submit(options) {
-    submitWork.apply(this, [options, client]);
+    submitWork([
+      ...options,
+      this.client,
+    ]);
   }
   start(options) {
     const client = new net.Socket();
