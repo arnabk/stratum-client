@@ -12,18 +12,17 @@ const defaultConfig = {
   "autoReconnectOnError": true
 };
 
+const client = new net.Socket();
+client.setEncoding('utf8');
+
 class Client {
   submit(options) {
-    submitWork([
+    submitWork({
       ...options,
-      this.client,
-    ]);
+      client,
+    });
   }
   start(options) {
-    const client = new net.Socket();
-
-    client.setEncoding('utf8');
-
     const updatedOptions = extend({}, defaultConfig, options);
 
     validateConfig(updatedOptions);
