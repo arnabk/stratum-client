@@ -6,7 +6,7 @@ module.exports = (client, updatedOptions, data, workObject) => {
     if (trim(jsonDataStr).length) {
       try {
         processData(client, updatedOptions, JSON.parse(trim(jsonDataStr)), workObject);
-      } catch (e) {
+      } catch(e) {
         console.error(e.message);
       }
     }

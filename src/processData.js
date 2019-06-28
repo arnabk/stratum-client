@@ -80,6 +80,7 @@ module.exports = (client, updatedOptions, jsonData, workObject) => {
         if (result) fnSuccess(error, result);
         else fnFailure(error, result);
       }
+      break;
     default:
       break;
   }
