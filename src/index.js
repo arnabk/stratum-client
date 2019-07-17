@@ -2,6 +2,7 @@
 const net = require('net');
 const extend = require('lodash/extend');
 const connect = require('./connect');
+const submitWork = require('./submitWork');
 const onData = require('./onData');
 const onError = require('./onError');
 const validateConfig = require('./validateConfig');
@@ -11,12 +12,17 @@ const defaultConfig = {
   "autoReconnectOnError": true
 };
 
+const client = new net.Socket();
+client.setEncoding('utf8');
+
 class Client {
-
+  submit(options) {
+    submitWork({
+      ...options,
+      client,
+    });
+  }
   start(options) {
-    const client = new net.Socket();
-    client.setEncoding('utf8');
-
     const updatedOptions = extend({}, defaultConfig, options);
 
     validateConfig(updatedOptions);
@@ -42,14 +48,18 @@ class Client {
         onError: null,
         onAuthorize: null,
         onAuthorizeSuccess: null,
-	      onAuthorizeFail: null,
+        onAuthorizeFail: null,
         onNewDifficulty: null,
         onSubscribe: null,
         onNewMiningWork: null,
+        onSubmitWorkSuccess: null,
+        onSubmitWorkFail: null,
       });
     });
 
     return {
+      client: client,
+      submit: this.submit,
       shutdown: () => {
         client.end();
         client.destroy();
