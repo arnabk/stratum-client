@@ -42,7 +42,14 @@ DEPRECATED: `onAuthorize(error, result)`. If `onAuthorizeSuccess` or `onAuthoriz
 
     $ npm test
 
+## Browser
+
+This module can also be browserified to work in a browser environment. However, the `net` module used by this module can't be browserified, so a polyfill is shipped in the repository, under `browser/polyfills`. 
+
+To browserify, run `npm run browserify`. The generated bundle can be found under `browser/`. On calling the browserify command, `aliasify` reroutes all net requires to the polyfill.
+
 ## Other information
 The project is open for suggestion or feedback. If you notice any issues while developing or using this library, feel free to report it [here](https://github.com/arnabk/stratum-client/issues)
+
 
 
