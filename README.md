@@ -48,8 +48,12 @@ This module can also be browserified to work in a browser environment. However, 
 
 To browserify, run `npm run browserify`. The generated bundle can be found under `browser/`. On calling the browserify command, `aliasify` reroutes all net requires to the polyfill.
 
+**You need a Websocket/TCP proxy for this to work!** Instead of connecting directly to a mining pool, the browser polyfill will connect to a specified websocket proxy, which will forward all data to a mining pool. A proxy such as [this](https://github.com/zquestz/ws-tcp-proxy) will work. After setting up the proxy, connect to the proxy instead of the pool.
+
+![Image of it working](https://i.imgur.com/zykVpac.png)
+
+Here, the proxy is running locally on port 8080.
+
 ## Other information
 The project is open for suggestion or feedback. If you notice any issues while developing or using this library, feel free to report it [here](https://github.com/arnabk/stratum-client/issues)
-
-
 
