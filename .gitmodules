@@ -1,2 +1,3 @@
 [submodule "browser/polyfills/net"]
 	url = https://github.com/AnanthVivekanand/net-websocket-polyfill
+        path = browser/polyfills/net
