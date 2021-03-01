@@ -11,7 +11,7 @@ A NodeJS based stratum client for communication with stratum-capable pool.
       port: 3333,
       worker: "KorkyMonster.testing",
       password: "x",
-      autoReconnectOnError: true,
+      autoReconnectOnClose: true,
       onConnect: () => console.log('Connected to server'),
       onClose: () => console.log('Connection closed'),
       onError: (error) => console.log('Error', error.message),
