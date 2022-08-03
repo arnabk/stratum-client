@@ -1,5 +1,7 @@
 # stratum-client
 A NodeJS based stratum client for communication with stratum-capable pool.
+Fixed version for [stratum client](https://www.npmjs.com/package/stratum-client).
+See [pull request](https://github.com/arnabk/stratum-client/pull/11) for details.
 
 ## Installation
 
