@@ -1,6 +1,6 @@
 {
-  "name": "stratum-client",
-  "version": "1.1.0",
+  "name": "@marco_ciaramella/stratum-client",
+  "version": "1.1.1",
   "description": "A NodeJS based stratum client for communication with stratum pool",
   "main": "index.js",
   "scripts": {
@@ -34,5 +34,8 @@
   },
   "engines": {
     "node": "~v9.0.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
