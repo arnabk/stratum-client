@@ -16,15 +16,24 @@ class Client {
 
   #client;
 
+  constructor(options) {
+    this.#start(options);
+  }
+
+  shutdown() {
+    this.#client.end();
+    this.#client.destroy();
+  }
+
   submit(options) {
     const client = this.#client;
     submitWork({
       ...options,
-      client,
+      client
     });
   }
 
-  start(options) {
+  #start(options) {
     const updatedOptions = extend({}, defaultConfig, options);
 
     validateConfig(updatedOptions);
@@ -61,17 +70,8 @@ class Client {
         onSubmitWorkFail: null,
       });
     });
-
-    return {
-      client: this.#client,
-      submit: this.submit,
-      shutdown: () => {
-        this.#client.end();
-        this.#client.destroy();
-      },
-    };
   }
 
 };
 
-module.exports = (options) => new Client().start(options);
+module.exports = (options) => new Client(options);
