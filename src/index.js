@@ -25,12 +25,8 @@ class Client {
     this.#client.destroy();
   }
 
-  submit(options) {
-    const client = this.#client;
-    submitWork({
-      ...options,
-      client
-    });
+  submit(worker, job_id, extranonce2, ntime, nonce) {
+    submitWork(worker, job_id, extranonce2, ntime, nonce, this.#client);
   }
 
   #start(options) {

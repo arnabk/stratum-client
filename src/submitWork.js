@@ -2,6 +2,6 @@ const {
   submitWork
 } = require('./messageContants');
 
-module.exports = (options) => {
-  options.client.write(submitWork.replace("<worker.name>", options.worker_name).replace("<jobID>", options.job_id).replace("<ExtraNonce2>", options.extranonce2).replace("<ntime>", options.ntime).replace("<nonce>", options.nonce));
+module.exports = (worker, job_id, extranonce2, ntime, nonce) => {
+  client.write(submitWork.replace("<worker.name>", worker).replace("<jobID>", job_id).replace("<ExtraNonce2>", extranonce2).replace("<ntime>", ntime).replace("<nonce>", nonce));
 };
