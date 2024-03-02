@@ -1,0 +1,20 @@
+git:
+  depth: 1
+matrix:
+  fast_finish: true
+language: node_js
+node_js:
+- '9'
+dist: trusty
+branches:
+  only:
+  - master
+deploy:
+  provider: npm
+  email: arnab.k@gmail.com
+  api_key: $NPMJS_API_KEY
+  on:
+    tags: true
+env:
+  global:
+    secure: Zk1HT4seJBtm/8+rqqzLLTsuoB49EqvgHYwdymc2PirPqiPtCVKHlH7X4vCvKr7lCAaH2ZKksrtyhoZW5fMjdgf6zu3gMZEdWKS92sMTGaXNYbrvemZTeSsiizsILzs0ULUq5WLDEK85Fixl1Nx/arGllBfrS48J6i++JNXMk9gstG8z5vPIS/xQmUGJWfGmBANKwxGDgljYWto9h9J8E9XR3mznUnNrPQzqdB+Ldcz4TJnaGwyaXOIC6BMIZBtdSGY3kJGI+hV3Ah50pYZX0NjnzK0TROMDlFvVELwv9IHMoLiuuayvGDVGC61gW1/NCX5et7hBxDi0JopaoEKT34JqIvtD0xuqNx9DqIpsjFKeTz+tCNo9p5wc4QP2RJmGn4eBEsYIaS3UnXojuZV4DjPDeIYjr3qBffWMirPKvQfqBkAl7NN6FtiU74O7UpUPHW0foH4BOCeiODDRt2JQ/zOJfa7mCI5LNRDPD70a/7R7JSEPXG+wAv/TA2ydKOKF/7dweze0YfKSlwG+s8JYOfEjPtqmzNs+CazrPUQbo/aGCneJAagMEOvottfZky08qv80yLorm5Ej8bg6AGcfjllkE8pWbCBQ/w5V+VC1iUwCLTaBQQp5WDC7UmzsHqE/6ocoaim0IwrZybD4Q9hPT5d/fvJFIHEVA7PZAhbK4bc=
