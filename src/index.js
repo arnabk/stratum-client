@@ -12,30 +12,44 @@ const defaultConfig = {
   "autoReconnectOnError": true
 };
 
-const client = new net.Socket();
-client.setEncoding('utf8');
-
 class Client {
+
+  #client;
+
+  constructor(options) {
+    this.#start(options);
+  }
+
+  shutdown() {
+    this.#client.end();
+    this.#client.destroy();
+  }
+
   submit(options) {
+    const client = this.#client;
     submitWork({
       ...options,
       client,
     });
   }
-  start(options) {
+
+  #start(options) {
     const updatedOptions = extend({}, defaultConfig, options);
 
     validateConfig(updatedOptions);
 
     const workObject = new WorkObject();
 
-    connect(client, updatedOptions);
+    this.#client = new net.Socket();
+    this.#client.setEncoding('utf8');
 
-    client.on('data', data => onData(client, updatedOptions, data, workObject));
+    connect(this.#client, updatedOptions);
 
-    client.on('error', error => onError(client, updatedOptions, error));
+    this.#client.on('data', data => onData(this.#client, updatedOptions, data, workObject));
 
-    client.on('close', () => {
+    this.#client.on('error', error => onError(this.#client, updatedOptions, error));
+
+    this.#client.on('close', () => {
       if (updatedOptions.onClose) updatedOptions.onClose();
       /*
         For some reason, corrupted data keeps streaming. This is a hack.
@@ -56,17 +70,8 @@ class Client {
         onSubmitWorkFail: null,
       });
     });
-
-    return {
-      client: client,
-      submit: this.submit,
-      shutdown: () => {
-        client.end();
-        client.destroy();
-      },
-    };
   }
 
 };
 
-module.exports = (options) => new Client().start(options);
+module.exports = (options) => new Client(options);
